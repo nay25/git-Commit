@@ -4,14 +4,16 @@ include("../conexion/conexion.php");
 
 
 //RECIBE VARIABLES AJAX
-$nombre      = $_POST["nombre"];
+$nombre = $_POST["nombre"];
 $abreviatura = $_POST["abreviatura"];
 
-$ide   =$_POST["ide"];
+
+
+$ide         =$_POST["ide"];
 
 $nombre      =trim($nombre);
 $abreviatura =trim($abreviatura);
-
+                                                                                                                                                                                                                                                      
 
 $fecha=date("Y-m-d"); 
 $hora=date ("H:i:s");

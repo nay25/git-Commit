@@ -129,21 +129,21 @@ $opcionMenu="A";
 				<div class="row">
 					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
 										<div class="form-group">
-											<label for="idAlumno">Seleccionar la persona:</label>
-											<select  id="idAlumno" class="select2 form-control " style="width: 100%">
+											<label for="idAlumnoE">Seleccionar la persona:</label>
+											<select  id="idAlumnoE" class="select2 form-control " style="width: 100%">
 											</select>
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<div class="form-group">
-											<label for="nocontrol">Número de control:</label>
-											<input type="text" id="nocontrol" class="form-control " required="" placeholder="Escribe el numero de control">
+											<label for="nocontrolE">Número de control:</label>
+											<input type="text" id="nocontrolE" class="form-control " required="" placeholder="Escribe el numero de control">
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<div class="form-group">
-											<label for="idCarrera">Seleccionar la Carrera:</label>
-											<select  id="idCarrera" class="select2 form-control " style="width: 100%">
+											<label for="idCarreraE">Seleccionar la Carrera:</label>
+											<select  id="idCarreraE" class="select2 form-control " style="width: 100%">
 											</select>
 										</div>
 									</div>

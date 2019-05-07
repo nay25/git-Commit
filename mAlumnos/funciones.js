@@ -108,31 +108,19 @@ function abrirModalEditar(nombre,paterno,materno,direccion,telefono,fecha_nac,co
 
 $("#frmActuliza").submit(function(e){
   
-    var nombre    = $("#nombreE").val();
-    var paterno   = $("#paternoE").val();
-    var materno   = $("#maternoE").val();
-    var direccion = $("#direccionE").val();
-    var sexo      = $("#sexoE").val();
-    var telefono  = $("#telefonoE").val();
-    var fecha_nac = $("#fecha_nacE").val();
-    var correo    = $("#correoE").val();
-    var tipo      = $("#tipoE").val();
-    var ide       = $("#idE").val();
+    var nocontrol    = $("#nocontrolE").val();
+    var idCarrera    = $("#idCarreraE").val();
+    var idPersona    = $("#idPersonaE").val();
+    var ide          = $("#idE").val();
 
         $.ajax({
             url:"actualizar.php",
             type:"POST",
             dateType:"html",
             data:{
-                    'nombre':nombre,
-                    'paterno':paterno,
-                    'materno':materno,
-                    'direccion':direccion,
-                    'sexo':sexo,
-                    'telefono':telefono,
-                    'fecha_nac':fecha_nac,
-                    'correo':correo,
-                    'tipo':tipo,
+                    'nocontrol':nocontrol,
+                    'idCarrera':idCarrera,
+                    'idPersona':idPersona,
                     'ide':ide
                  },
             success:function(respuesta){
