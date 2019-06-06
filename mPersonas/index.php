@@ -4,7 +4,7 @@ include'../conexion/conexion.php';
 // Variables de configuración
 $titulo="Catálago de personas";
 $opcionMenu="A";
-
+$fecha=date("Y-m-d"); 
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,10 +47,16 @@ $opcionMenu="A";
 		<?php 
 			include('../layout/encabezado.php');
 		 ?>
+
+		 <?php 
+		include('../layout/modal.php');
+    
+		?>
+
 	</header><!-- /header -->	
 	<div class="container-fluid" >
-		<div class="row">
-			<div class="col-xs-0 col-sm-3 col-md-2 col-lg-2 vertical">
+	<div class="row" id="cuerpo" style="display:none">
+		<div class="col-xs-0 col-sm-3 col-md-2 col-lg-2 vertical" >
 			<?php 
 				include('menuv.php');
 			 ?>
@@ -106,7 +112,7 @@ $opcionMenu="A";
 									<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
 										<div class="form-group">
 											<label for="fecha_nac">Fecha de Nacimiento:</label>
-											<input type="date" id="fecha_nac" class="form-control " required="" placeholder="yyyy-mm-dd">
+											<input type="date" id="fecha_nac" class="form-control " required="" placeholder="yyyy-mm-dd" value="<?php echo $fecha;?>">
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-6 col-md-7 col-lg-8">
@@ -147,7 +153,7 @@ $opcionMenu="A";
 	<footer class="fondo">
 		<?php 
 			include('../layout/pie.php');
-		 ?>			
+		 ?>		
 
 	</footer>
 
@@ -240,7 +246,7 @@ $opcionMenu="A";
 		</form>
 	  </div>
 	</div>
-	<!-- Modal -->
+
 
 	<!-- ENLACE A ARCHIVOS JS -->
 
@@ -281,6 +287,11 @@ $opcionMenu="A";
     <script src="funciones.js"></script>
     <script src="../js/menu.js"></script>
     <script src="../js/precarga.js"></script>
+		<script src="../js/salir.js"></script>
+		<script src="../js/cambiarcontra.js"></script>
+		<!-- paso 2 -->
+		<script src="../js/contraseña.js"></script>
+
 
     <!-- LLAMADAS A FUNCIONES E INICIALIZACION DE COMPONENTES -->
 
@@ -303,5 +314,10 @@ $opcionMenu="A";
 	</script>
 
 	<script type="text/javascript" src="../plugins/stacktable/stacktable.js"></script> 
+	<script>
+		window.onload = function() {
+			$("#cuerpo").fadeIn("slow");
+		};	
+	</script>
 </body>
 </html>

@@ -8,8 +8,8 @@
 							</a>
 						</li>
 						<li class="list-unstyled">
-							<a href="" id="mnuB" class="menuInicio">
-								<i class="far fa-file-alt"></i> Reportes 
+							<a href="#" onclick="imprimir();" id="mnuB" class="menuInicio">
+								<i class="far fa-file-pdf"></i> Reportes 
 							</a>
 						</li >
 						<li class="list-unstyled" class="menuInicio">
@@ -17,5 +17,8 @@
 								<i class="fas fa-home"></i> Inicio 
 							</a>
 						</li >
+						<li class="list-unstyled">
+							<a href="#" onclick="salir();"><i class="fas fa-sign-out-alt"></i> Salir</a>
+						</li>
 					</ul>
 				</div>

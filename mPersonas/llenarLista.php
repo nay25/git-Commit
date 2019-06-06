@@ -20,7 +20,7 @@ $consulta=mysql_query("SELECT
 							ap_paterno,
 							ap_materno
 						FROM
-							personas",$conexion) or die (mysql_error());
+							personas ORDER BY id_persona DESC",$conexion) or die (mysql_error());
 // $row=mysql_fetch_row($consulta)
  ?>
 				            <div class="table-responsive">
@@ -85,6 +85,7 @@ $consulta=mysql_query("SELECT
 																<p id="<?php echo "tSexo".$n; ?>" class="<?php echo $claseDesabilita; ?>">
 				                          	<?php echo $sexo; ?>
 				                          </p>	
+																</td>
 				                        <td>
 				                          <button id="<?php echo "boton".$n; ?>" <?php echo $desabilitar ?>  type="button" class="btn btn-login btn-sm" 
 				                          onclick="abrirModalEditar(

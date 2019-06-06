@@ -1,6 +1,6 @@
 function llenar_lista(){
      // console.log("Se ha llenado lista");
-    preCarga(1000,4);
+    // preCarga(1000,4);
     $.ajax({
         url:"llenarLista.php",
         type:"POST",
@@ -17,7 +17,7 @@ function llenar_lista(){
 }
 
 function ver_alta(){
-    preCarga(800,4);
+    // preCarga(800,4);
     $("#lista").slideUp('low');
     $("#alta").slideDown('low');
     $("#nombre").focus();
@@ -175,6 +175,7 @@ $("#frmActuliza").submit(function(e){
                     'usuario':usuario,
                     'contra':contra,
                     'ide':ide
+                    //'restaurar':1
                  },
             success:function(respuesta){
 
@@ -270,29 +271,34 @@ function restaurarContra(idUser){
         data:{
                 'idUser':idUser
              },
-        success:function(respuesta){
+                success:function(respuesta){
 
-            alertify.dialog('alert').set({transition:'zoom',message: 'Transition effect: zoom'}).show();
+         // console.log("Saliendo del sistema...")
+    alertify.confirm('alert').set({transition:'zoom',message: 'Transition effect: zoom'}).show();
+    alertify.confirm(
+        'Sistema de Registro de Alumnos', 
+        '¿Deseas restaurar la contraseña?', 
+        function(){ 
+                alertify.success('Restaurando....') ; 
+                preCarga(2000,2);
+                setInterval(salida, 2000);
+            }, 
+        function(){ 
+                alertify.error('Cancelar') ; 
+                console.log('cancelado')}
+    ).set('labels',{ok:'Si',cancel:'Cancelar'});
 
-            alertify.alert()
-            .setting({
-                'title':'Información',
-                'label':'Salir',
-                'message': 'La contraseña ha sido modificada' ,
-                'onok': function(){ alertify.message('Gracias !');}
-            }).show();
-
-        },
-        error:function(xhr,status){
+},
+   error:function(xhr,status){
             alert(xhr);
-        },
-    });
-}
+ },
+});
 
+}
 function mostrarContra(){
     var btnMostrar=$('#btnMostrar').val();
     // console.log(btnMostrar);
-    preCarga(300);
+    preCarga(300,2);
     if(btnMostrar=='oculto'){
         $("#contraE").attr("type","text");
         $("#vContraE").attr("type","text");
@@ -328,3 +334,24 @@ function llenar_personaU(idPersona)
         },
     });
 }
+
+function imprimir(){
+
+    var titular = "Lista de usuarios";
+    var mensaje = "¿Deseas generar un archivo con PDF oon la lista de usuarios activas";
+    // var link    = "pdfListaPersona.php?id="+idPersona+"&datos="+datos;
+    var link    = "pdfListaUsuario.php?";
+
+    alertify.confirm('alert').set({transition:'zoom',message: 'Transition effect: zoom'}).show();
+    alertify.confirm(
+        titular, 
+        mensaje, 
+        function(){ 
+            window.open(link,'_blank');
+            }, 
+        function(){ 
+                alertify.error('Cancelar') ; 
+                // console.log('cancelado')
+              }
+    ).set('labels',{ok:'Generar PDF',cancel:'Cancelar'}); 
+  }

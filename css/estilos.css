@@ -288,3 +288,106 @@ body.login{
 }
 
 /*---------------Fin login---------------*/
+
+*{
+	margin : 0px;
+	padding: 0px;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+}
+
+body{
+	/*background: url(bg.jpg) #000;*/
+	background-size:cover;
+	color:#000;
+	font-size:16px;
+}
+
+.wrap{
+	width:70%;
+	max-width: 1000px;
+	margin:auto;
+}
+
+.widget{
+	width: 100%;
+	margin:2em;
+	/*margin:32px;*/
+}
+
+.widget p{
+	display: inline-block;
+	line-height: 1em;
+}
+
+.fecha{
+	font-family: Oswald, Arial;
+	text-align: center;
+	font-size: 1.3em;
+	margin-bottom: 0.3125rem;
+	/*margin-bottom:5px;*/
+	background: rgba(250, 177, 160,1.0);
+	padding: 20px;
+	width: 100%;
+}
+
+.reloj{
+	font-family: Oswald, Arial;
+	width: 100%;
+	padding: 0px;
+	font-size: 2em;
+	text-align: center;
+	background: rgba(255, 234, 167,1.0);
+}
+
+.fecha1{
+	font-family: Oswald, Arial;
+	text-align: center;
+	font-size: 1.3em;
+	margin-bottom: 0.3125rem;
+	/*margin-bottom:5px;*/
+	background: rgba(18, 203, 196,1.0);
+	padding: 20px;
+	width: 80%;
+}
+
+.reloj1{
+	font-family: Oswald, Arial;
+	width: 80%;
+	padding: 20px;
+	font-size: 2em;
+	text-align: center;
+	background: rgba(255, 234, 167,1.0);
+}
+
+.reloj .caja-segundos{
+	display: inline-block;
+}
+
+.reloj .segundos,
+.reloj .ampm{
+	font-size: 1rem;
+	display: block;
+}
+
+.foto{
+	text-align: center;
+	padding: 8px;
+
+}
+
+.tema{
+	text-align: center;
+	font-size: 30px;
+	font-family: castellar;
+	color: #e84393;
+	font-weight: bold;
+}
+
+@media (max-width:470px){
+	form{
+		width: 100%;
+	}
+}
+

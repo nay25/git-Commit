@@ -1,10 +1,8 @@
 <?php 
 include'../conexion/conexion.php';
-
 // Variables de configuración
 $titulo="Catálago de Alumnos";
 $opcionMenu="A";
-
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,15 +45,20 @@ $opcionMenu="A";
 		<?php 
 			include('../layout/encabezado.php');
 		 ?>
+		 <?php 
+		include('../layout/modal.php');
+    
+		?>
+
 	</header><!-- /header -->	
 	<div class="container-fluid" >
 		<div class="row">
-			<div class="col-xs-0 col-sm-3 col-md-2 col-lg-2 vertical">
+		<div class="col-xs-0 col-sm-3 col-md-2 col-lg-2 vertical" id="menu" style="display:none">
 			<?php 
 				include('menuv.php');
 			 ?>
 			</div>
-			<div class="col-xs-12 col-sm-9 col-md-10 col-lg-10 cont">
+			<div class="col-xs-12 col-sm-9 col-md-10 col-lg-10 cont" id="titulo" style="display:none">
 			   <div class="titulo borde sombra">
 			        <h3><?php echo $titulo; ?></h3>
 			   </div>	
@@ -64,27 +67,27 @@ $opcionMenu="A";
 				        <section id="alta" style="display: none">
             				<form id="frmAlta">
 								<div class="row">
-									<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+
+									<div class="col-xs-12 col-sm-8 col-md-8 col-lg-7">
 										<div class="form-group">
-											<label for="idPersona">Seleccionar la persona:</label>
+											<label for="idPersona">Seleccione a la persona:</label>
 											<select  id="idPersona" class="select2 form-control " style="width: 100%">
 											</select>
 										</div>
 									</div>
-									<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-5">
 										<div class="form-group">
-											<label for="nocontrol">Número de control:</label>
-											<input type="text" id="nocontrol" class="form-control " required="" placeholder="Escribe el numero de control">
+											<label for="noControl">No de Control:</label>
+											<input type="text" id="noControl" class="form-control " required="" placeholder="Escribe el usuario" autofocus>
 										</div>
 									</div>
-									<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<div class="form-group">
-											<label for="idCarrera">Seleccionar la Carrera:</label>
+											<label for="idCarrera">Seleccione la carrera:</label>
 											<select  id="idCarrera" class="select2 form-control " style="width: 100%">
 											</select>
 										</div>
 									</div>
-									
 
 									<hr class="linea">
 								</div>
@@ -112,41 +115,40 @@ $opcionMenu="A";
 		 ?>			
 
 	</footer>
-
 	<!-- Modal -->
 	<div id="modalEditar" class="modal fade" role="dialog">
 	  <div class="modal-dialog modal-lg">
 
 	    <!-- Modal content-->
-	    <form id="frmActuliza">
+	    <form id="frmActualiza">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title">Editar datos alumnos</h4>
+	        <h4 class="modal-title">Editar datos personas</h4>
 	      </div>
 	      <div class="modal-body">
 				<input type="hidden" id="idE">
 				<div class="row">
-					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-										<div class="form-group">
-											<label for="idAlumnoE">Seleccionar la persona:</label>
-											<select  id="idAlumnoE" class="select2 form-control " style="width: 100%">
-											</select>
-										</div>
-									</div>
-									<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-										<div class="form-group">
-											<label for="nocontrolE">Número de control:</label>
-											<input type="text" id="nocontrolE" class="form-control " required="" placeholder="Escribe el numero de control">
-										</div>
-									</div>
-									<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-										<div class="form-group">
-											<label for="idCarreraE">Seleccionar la Carrera:</label>
-											<select  id="idCarreraE" class="select2 form-control " style="width: 100%">
-											</select>
-										</div>
-									</div>
+					<div class="col-xs-12 col-sm-8 col-md-8 col-lg-7">
+						<div class="form-group">
+							<label for="nombreE">Nombre de la persona:</label>
+							<select  id="nombreE" class="select2 form-control " style="width: 100%" disabled="">
+							</select>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-5">
+						<div class="form-group">
+							<label for="noControlE">No de Control:</label>
+							<input type="text" id="noControlE" class="form-control " autofocus required="" placeholder="Escribe el usuario">
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="form-group">
+							<label for="carreraE">Carrera:</label>
+							<select  id="carreraE" class="select2 form-control " style="width: 100%">
+							</select>
+						</div>
+					</div>
 					<hr class="linea">
 				</div>
 	      </div>
@@ -162,7 +164,10 @@ $opcionMenu="A";
 		</form>
 	  </div>
 	</div>
+
+	
 	<!-- Modal -->
+
 
 	<!-- ENLACE A ARCHIVOS JS -->
 
@@ -203,7 +208,10 @@ $opcionMenu="A";
     <script src="funciones.js"></script>
     <script src="../js/menu.js"></script>
     <script src="../js/precarga.js"></script>
-
+		<script src="../js/salir.js"></script>
+		<script src="../js/cambiarcontra.js"></script>
+		<!-- paso 2 -->
+		<script src="../js/contraseña.js"></script>
     <!-- LLAMADAS A FUNCIONES E INICIALIZACION DE COMPONENTES -->
 
     <!-- Llamar la funcion para llenar la lista -->
@@ -224,6 +232,13 @@ $opcionMenu="A";
 		$(document).ready(function() { menuActivo(letra); });
 	</script>
 
-	<script type="text/javascript" src="../plugins/stacktable/stacktable.js"></script> 
+	<script type="text/javascript" src="../plugins/stacktable/stacktable.js"></script>
+	<script>
+		window.onload = function() {
+			$("#listaInicial").fadeIn("slow");
+			$("#menu").fadeIn("slow");
+			$("#titulo").fadeIn("slow");
+		};	
+	</script> 
 </body>
 </html>

@@ -1,24 +1,21 @@
 <?php 
 // Conexion a la base de datos
 include'../conexion/conexion.php';
-
 // Codificacion de lenguaje
 mysql_query("SET NAMES utf8");
-
 // Consulta a la base de datos
-$consulta=mysql_query("SELECT
-												id_alumno,
-												no_control,
-												id_carrera,
-												id_persona,
-												activo,
-												(SELECT personas.nombre FROM personas WHERE personas.id_persona=alumnos.id_persona) AS nAlumnos,
-												(SELECT personas.ap_paterno FROM personas WHERE personas.id_persona=alumnos.id_persona) AS pAlumnos,
-												(SELECT personas.ap_materno FROM personas WHERE personas.id_persona=alumnos.id_persona) AS mAlumnos,
-												(SELECT carreras.nombre FROM carreras WHERE carreras.id_carrera=alumnos.id_carrera) AS mCarrera,
-												fecha_registro
-												FROM
-												alumnos",$conexion) or die (mysql_error());
+$consulta=mysql_query("SELECT 
+					   id_alumno,
+					   id_persona,
+					   id_carrera,
+					   no_control,
+					   activo,
+					   (SELECT personas.nombre FROM personas WHERE personas.id_persona=alumnos.id_persona) AS nAlumno,
+					   (SELECT personas.ap_paterno FROM personas WHERE personas.id_persona=alumnos.id_persona) AS pAlumno,
+					   (SELECT personas.ap_materno FROM personas WHERE personas.id_persona=alumnos.id_persona) AS mAlumno,
+					   (SELECT carreras.nombre FROM carreras WHERE carreras.id_carrera=alumnos.id_carrera) AS Carrera,
+					   fecha_registro
+					   FROM alumnos",$conexion) or die (mysql_error());
 // $row=mysql_fetch_row($consulta)
  ?>
 				            <div class="table-responsive">
@@ -27,13 +24,11 @@ $consulta=mysql_query("SELECT
 				                    <thead align="center">
 				                      <tr class="info" >
 				                        <th>#</th>
-				                        <th>Número de control</th>
-				                        <th>Alumno</th>
+				                        <th>No_Control</th>
+				                        <th>Nombre</th>
 				                        <th>Carrera</th>
-				                        <th>Registro</th>
 				                        <th>Editar</th>
-										<th>Estatus</th>
-
+				                        <th>Estatus</th>
 				                      </tr>
 				                    </thead>
 
@@ -41,19 +36,17 @@ $consulta=mysql_query("SELECT
 				                    <?php 
 				                    $n=1;
 				                    while ($row=mysql_fetch_row($consulta)) {
-										$idAlumno           = $row[0];
-										$activo             = $row[4];
-										$nomUsuarioCompleto = $row[6].' '.$row[7].' '.$row[5];
-										$idPersona          =$row[2];
-										$nocontrol          = $row[1];
-										$carrera            = $row[8];
-										$idCarrera          = $row[3];
-										$registro           = $row[9];
-										
-
-										$checado         = ($activo == 1)?'checked' : '';		
-										$desabilitar     = ($activo == 0)?'disabled': '';
-										$claseDesabilita = ($activo == 0)?'desabilita':'';
+										$idAlumno          = $row[0];
+										$nomCarrera        = $row[8];
+										$activo            = $row[4];
+										$nomAlumnoCompleto = $row[6].' '.$row[7].' '.$row[5];
+										$idPersona         = $row[1];
+										$idCarrera         = $row[2]; 
+										$noControl         = $row[3];
+										$registro          = $row[9];
+										$checado           = ($activo == 1)?'checked' : '';		
+										$desabilitar       = ($activo == 0)?'disabled': '';
+										$claseDesabilita   = ($activo == 0)?'desabilita':'';
 										?>
 				                      <tr>
 				                        <td >
@@ -62,40 +55,27 @@ $consulta=mysql_query("SELECT
 				                          </p>
 				                        </td>
 				                        <td>
-																<p id="<?php echo "tNnumerocontrol".$n; ?>" class="<?php echo $claseDesabilita; ?>">
-				                          	<?php echo $nocontrol; ?>
+										   <p id="<?php echo "tNoControl".$n; ?>" class="<?php echo $claseDesabilita; ?>">
+				                          	<?php echo $noControl; ?>
 				                          </p>
 				                        </td>
 				                        <td>
-																<p id="<?php echo "tNcompleto".$n; ?>" class="<?php echo $claseDesabilita; ?>">
-				                          	<?php echo $nomUsuarioCompleto; ?>
+										   <p id="<?php echo "tnomAlumnoCompleto".$n; ?>" class="<?php echo $claseDesabilita; ?>">
+				                          	<?php echo $nomAlumnoCompleto; ?>
 				                          </p>
 				                        </td>
-				                         <td>
-																<p id="<?php echo "tCarreras".$n; ?>" class="<?php echo $claseDesabilita; ?>">
-				                          	<?php echo $carrera; ?>
-				                          </p>
-				                        </td>
-
-				
 				                        <td>
-																<p id="<?php echo "tRegistro".$n; ?>"  class="<?php echo $claseDesabilita; ?>">
-				                          	<?php echo $registro; ?>
+										   <p id="<?php echo "tnomCarrera".$n; ?>"  class="<?php echo $claseDesabilita; ?>">
+				                          	<?php echo $nomCarrera; ?>
 				                          </p>
 				                        </td>	
 				                        <td>
 				                          <button id="<?php echo "boton".$n; ?>" <?php echo $desabilitar ?>  type="button" class="btn btn-login btn-sm" 
 				                          onclick="abrirModalEditar(
-				                          							'<?php echo $nombre ?>',
-				                          							'<?php echo $paterno ?>',
-				                          							'<?php echo $materno ?>',
-				                          							'<?php echo $direccion ?>',
-				                          							'<?php echo $telefono ?>',
-				                          							'<?php echo $fecha_nac ?>',
-				                          							'<?php echo $correo ?>',
-																								'<?php echo $tipoPersona ?>',
-																								'<?php echo $genero ?>',
-																								'<?php echo $idPersona ?>'
+				                          							'<?php echo $idAlumno ?>',
+				                          							'<?php echo $idPersona ?>',
+				                          							'<?php echo $idCarrera ?>',
+				                          							'<?php echo $noControl ?>'
 				                          							);">
 				                          	<i class="far fa-edit"></i>
 				                          </button>
@@ -114,12 +94,11 @@ $consulta=mysql_query("SELECT
 				                    <tfoot align="center">
 				                      <tr class="info">
 										<th>#</th>
-				                        <th>Número de control</th>
-				                        <th>Alumno</th>
+				                        <th>No_Control</th>
+				                        <th>Nombre</th>
 				                        <th>Carrera</th>
-				                        <th>Registro</th>
 				                        <th>Editar</th>
-										<th>Estatus</th>
+				                        <th>Estatus</th>
 				                      </tr>
 				                    </tfoot>
 				                </table>
@@ -175,11 +154,8 @@ $consulta=mysql_query("SELECT
                   ]
               } );
           } );
-
       </script>
       <script>
             $(".interruptor").bootstrapToggle('destroy');
             $(".interruptor").bootstrapToggle();
       </script>
-    
-    
